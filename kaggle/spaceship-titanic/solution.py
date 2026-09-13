@@ -101,10 +101,10 @@ model.fit(X, y)
 # %%
 predictions = model.predict(X_test).astype(bool)
 
-submission = pd.DataFrame({
-    "PassengerId": test_passenger_ids,
-    "Transported": predictions,
-})
-submission.to_csv("submission.csv", index=False)
-print(submission.head())
-print("Saved submission.csv")
+# submission = pd.DataFrame({
+#     "PassengerId": test_passenger_ids,
+#     "Transported": predictions,
+# })
+# submission.to_csv("submission.csv", index=False)
+# print(submission.head())
+# print("Saved submission.csv")
