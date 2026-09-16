@@ -1,4 +1,12 @@
 
 
+
+## 1.When Authentication Expiration [GCP Shell)]
+ 
+```bash
 gcloud auth login
 gcloud compute ssh kaggle-vm --zone=us-central1-a
+```
+
+
+ 
