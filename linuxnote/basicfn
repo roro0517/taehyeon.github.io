@@ -1,0 +1,4 @@
+
+
+gcloud auth login
+gcloud compute ssh kaggle-vm --zone=us-central1-a
