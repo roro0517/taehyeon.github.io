@@ -48,7 +48,7 @@ gcloud compute instances describe kaggle-vm --zone=us-central1-a \
 http://<external_IP>:8080/guacamole
 ```
  
-Login: `guacadmin` / `guacadmin` (or your changed password)
+Login: `guacadmin` / `rlaxogus` (or your changed password)
  
 ## 7. Open the desktop
  
