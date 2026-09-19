@@ -55,6 +55,27 @@ Login: `guacadmin` / `rlaxogus` (or your changed password)
 Click the **kaggle-desktop** connection on the home screen — that opens the VNC desktop.
  
 If it's not there yet, add it under Settings → Connections → New Connection:
+
+# When connecting at PC bang
+
+1. Get the PC bang's public IP
+
+Run this on the PC bang computer's browser (not in Cloud Shell, since that shows Google's IP): search "what is my IP", or open https://ifconfig.me.
+
+2. Update the rule in Cloud Shell
+
+gcloud compute firewall-rules update allow-guacamole \
+  --source-ranges=<PC_BANG_IP>/32
+
+You can confirm it took effect with:
+
+gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRanges)"
+
+3. Open it in the browser
+
+http://34.59.170.88:8080/guacamole
+
+
  
 | Field | Value |
 |---|---|
