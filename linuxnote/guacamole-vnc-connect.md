@@ -13,7 +13,7 @@ gcloud compute instances start kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 gcloud compute ssh kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
 ```bash
-#stop/resume
+#stop
 gcloud compute instances stop kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
 ## 2. Start VNC if not running
