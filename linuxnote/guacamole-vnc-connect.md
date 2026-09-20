@@ -37,7 +37,7 @@ docker compose ps
 #(@Cloud Shell)
 gcloud compute firewall-rules create allow-guacamole \ 
   --allow=tcp:8080 \
-  --source-ranges=211.223.33.71/32 \
+  --source-ranges=<VMExternalIP>/32 \
   --target-tags=kaggle-vm
  
 gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-vm
@@ -55,7 +55,7 @@ gcloud compute instances describe kaggle-vm --zone=us-central1-a \
 ## 6. Open it in the browser (싸지방)
  
 ```
-http://211.223.33.71:8080/guacamole
+http://<VMExternalIP>:8080/guacamole
 ```
  
 Login: `guacadmin` / `rlaxogus` (or your changed password)
