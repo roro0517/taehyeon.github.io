@@ -4,36 +4,36 @@ Quick reference for reconnecting to the VNC desktop through Guacamole, assuming 
 
 
  ## 1. SSH into kaggle-vm (TURN ON/OFF the VM) 
-```bash (Cloud Shell)
+```bash 
 #start/resume
-gcloud compute instances start kaggle-vm --zone=us-central1-a
+gcloud compute instances start kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 
 #to reconnect
-gcloud compute ssh kaggle-vm --zone=us-central1-a
+gcloud compute ssh kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
-```bash (Cloud Shell)
+```bash
 #stop/resume
-gcloud compute instances stop kaggle-vm --zone=us-central1-a
+gcloud compute instances stop kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
 ## 2. Inside kaggle-vm SSH — start VNC if not running
  
-```bash (VM)
-vncserver
+```bash 
+vncserver #(@VM)
 ```
 *(If it's already running, this will error out safely — that's fine.)*
  
 ## 3. Inside kaggle-vm SSH — start Guacamole containers
  
-```bash (VM)
-cd ~/guacamole
+```bash 
+cd ~/guacamole #(@VM)
 docker compose up -d
-docker compose ps
+docker compose ps 
 ```
  
 ## 4. In Cloud Shell (NOT kaggle-vm) — open firewall for your IP
  
-```bash (Cloud Shell)
-gcloud compute firewall-rules create allow-guacamole \
+```bash 
+gcloud compute firewall-rules create allow-guacamole \ #(@Cloud Shell)
   --allow=tcp:8080 \
   --source-ranges=211.223.33.71/32 \
   --target-tags=kaggle-vm
@@ -45,7 +45,7 @@ gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-v
 ## 5. In Cloud Shell — get the external IP
  
 ```bash (Cloud SHell)
-gcloud compute instances describe kaggle-vm --zone=us-central1-a \
+gcloud compute instances describe kaggle-vm --zone=us-central1-a \ #(@Cloud Shell)
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
  
@@ -56,6 +56,7 @@ http://<external_IP>:8080/guacamole
 ```
  
 Login: `guacadmin` / `rlaxogus` (or your changed password)
+
  
 ## 7. Open the desktop
  
@@ -72,19 +73,19 @@ If it's not there yet, add it under Settings → Connections → New Connection:
 Run this on the PC bang computer's browser (not in Cloud Shell, since that shows Google's IP): search "what is my IP", or open https://ifconfig.me.
 
 2. Update the rule in Cloud Shell
-```bash (Cloud Shell)
-gcloud compute firewall-rules update allow-guacamole --source-ranges=<PC_BANG_IP>/32
+```bash
+gcloud compute firewall-rules update allow-guacamole --source-ranges=<PC_BANG_IP>/32 #(@Cloud Shell)
 ```
 You can confirm it took effect with:
 
-```bash (Cloud Shell)
-gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRanges)"
+```bash 
+gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRanges)" #(@Cloud Shell)
 ```
 
 3. Open it in the browser
-
+```
 http://<PC_BANG_IP>:8080/guacamole
-
+```
 
  
 | Field | Value |
