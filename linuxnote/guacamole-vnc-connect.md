@@ -31,7 +31,7 @@ docker compose up -d
 docker compose ps 
 ```
  
-## 4. OIpen firewall for your IP
+## 4. Open firewall for your IP
  
 ```bash 
 gcloud compute firewall-rules create allow-guacamole \ #(@Cloud Shell)
