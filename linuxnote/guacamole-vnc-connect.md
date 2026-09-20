@@ -37,20 +37,25 @@ docker compose ps
 #(@Cloud Shell)
 gcloud compute firewall-rules create allow-guacamole \ 
   --allow=tcp:8080 \
-  --source-ranges=211.223.33.71/32 \
+  --source-ranges=<publicIP>/32 \
   --target-tags=kaggle-vm
  
 gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-vm
 ```
-*Skip this step if the rule already exists — running it twice just errors "already exists", which is fine.*
+*  Skip this step if the rule already exists — running it twice just errors "already exists", which is fine. <br>
+*  \<publicIP\>: ex) 싸지방 IP, 피씨방 IP
+
  
-## 5. Get the external IP
+## 5. Get the VM's external IP (\<VMExternalIP\>)
  
 ```bash
 #(@Cloud Shell)
-gcloud compute instances describe kaggle-vm --zone=us-central1-a \ 
+gcloud compute instances describe kaggle-vm --zone=us-central1-a \
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
+*  external IP is VM's external IP
+*  You can just search for GCP VM info
+
  
 ## 6. Open it in the browser (싸지방)
  
@@ -66,8 +71,16 @@ Login: `guacadmin` / `rlaxogus` (or your changed password)
 Click the **kaggle-desktop** connection on the home screen — that opens the VNC desktop.
  
 If it's not there yet, add it under Settings → Connections → New Connection:
+ 
+| Field | Value |
+|---|---|
+| Protocol | VNC |
+| Hostname | `172.17.0.1` (or kaggle-vm's internal IP `10.128.0.x` if that doesn't work) |
+| Port | 5901 |
+| Password | kaggle1 |
 
-
+*****
+*****
 
 # When connecting at PC bang
 
@@ -90,10 +103,4 @@ gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRan
 http://<PC_BANG_IP>:8080/guacamole
 ```
 
- 
-| Field | Value |
-|---|---|
-| Protocol | VNC |
-| Hostname | `172.17.0.1` (or kaggle-vm's internal IP `10.128.0.x` if that doesn't work) |
-| Port | 5901 |
-| Password | kaggle1 |
+
