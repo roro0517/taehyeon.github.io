@@ -43,7 +43,7 @@ gcloud compute firewall-rules create allow-guacamole \
 gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-vm
 ```
 *  Skip this step if the rule already exists — running it twice just errors "already exists", which is fine. <br>
-*  \<publicIP\>: ex) 싸지방 IP, 피씨방 IP
+*  \<publicIP\>: ex) 싸지방 IP (211.223.33.71), 피씨방 IP
 
  
 ## 5. Get the VM's external IP (\<VMExternalIP\>)
