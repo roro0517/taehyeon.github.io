@@ -33,8 +33,9 @@ docker compose ps
  
 ## 4. Open firewall for your IP
  
-```bash 
-gcloud compute firewall-rules create allow-guacamole \ #(@Cloud Shell)
+```bash
+#(@Cloud Shell)
+gcloud compute firewall-rules create allow-guacamole \ 
   --allow=tcp:8080 \
   --source-ranges=211.223.33.71/32 \
   --target-tags=kaggle-vm
@@ -45,8 +46,9 @@ gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-v
  
 ## 5. Get the external IP
  
-```bash (Cloud SHell)
-gcloud compute instances describe kaggle-vm --zone=us-central1-a \ #(@Cloud Shell)
+```bash
+#(@Cloud Shell)
+gcloud compute instances describe kaggle-vm --zone=us-central1-a \ 
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
  
