@@ -83,7 +83,7 @@ gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRan
 
 3. Open it in the browser
 
-http://<NewIP>:8080/guacamole
+http://<PC_BANG_IP>:8080/guacamole
 
 
  
