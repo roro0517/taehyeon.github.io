@@ -1,13 +1,20 @@
 # Connect to VNC via Guacamole (GCP kaggle-vm)
  
 Quick reference for reconnecting to the VNC desktop through Guacamole, assuming XFCE/VNC and the Guacamole containers are already installed on kaggle-vm.
- 
-## 1. SSH into kaggle-vm (Cloud Shell or local terminal)
- 
+
+
+ ## 1. SSH into kaggle-vm (TURN ON/OFF the VM) (Cloud Shell or local terminal)
 ```bash
+#start/resume
+gcloud compute instances start kaggle-vm --zone=us-central1-a
+
+#to reconnect
 gcloud compute ssh kaggle-vm --zone=us-central1-a
 ```
- 
+```bash
+#stop/resume
+gcloud compute instances stop kaggle-vm --zone=us-central1-a
+```
 ## 2. Inside kaggle-vm SSH — start VNC if not running
  
 ```bash
@@ -56,11 +63,7 @@ Click the **kaggle-desktop** connection on the home screen — that opens the VN
  
 If it's not there yet, add it under Settings → Connections → New Connection:
 
-## 8. TO TURN OFF the VM
 
-```bash
-gcloud compute instances stop kaggle-vm --zone=us-central1-a
-```
 
 # When connecting at PC bang
 
