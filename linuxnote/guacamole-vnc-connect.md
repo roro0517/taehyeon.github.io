@@ -56,6 +56,12 @@ Click the **kaggle-desktop** connection on the home screen — that opens the VN
  
 If it's not there yet, add it under Settings → Connections → New Connection:
 
+## 8. TO TURN OFF the VM
+
+```bash
+gcloud compute instances stop kaggle-vm --zone=us-central1-a
+```
+
 # When connecting at PC bang
 
 1. Get the PC bang's public IP
