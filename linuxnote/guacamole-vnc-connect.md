@@ -7,7 +7,8 @@ Quick reference for reconnecting to the VNC desktop through Guacamole, assuming 
 ```bash 
 #start/resume
 gcloud compute instances start kaggle-vm --zone=us-central1-a #(@Cloud Shell)
-
+```
+```bash 
 #to reconnect
 gcloud compute ssh kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
@@ -49,10 +50,10 @@ gcloud compute instances describe kaggle-vm --zone=us-central1-a \ #(@Cloud Shel
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
  
-## 6. In your browser
+## 6. Open it in the browser (싸지방)
  
 ```
-http://<external_IP>:8080/guacamole
+http://211.223.33.71:8080/guacamole
 ```
  
 Login: `guacadmin` / `rlaxogus` (or your changed password)
