@@ -102,5 +102,34 @@ gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRan
 ```
 http://<PC_BANG_IP>:8080/guacamole
 ```
+*****
+*****
+
+# To Check VNC Server & Guacamole is running
+
+1. VNC Server
+```bash
+#(@VM)
+vncserver -list
+ss -ltnp | grep -E '590[0-9]'
+```
+* vncserver -list should show your session (:2 and/or :3) with its port and a process ID.
+* In the ss output, 0.0.0.0:5902 or *:5902 means Docker can reach it. 127.0.0.1:5902 or [::1]:5902 means it's localhost-only, so restart it with vncserver -kill :2 followed by vncserver :2 -localhost no.
+
+```bash
+#to kill
+vncserver -kill :1
+vncserver -kill :2
+```
+
+2. Guacamole
+```bash
+#(@VM)
+cd ~/guacamole
+docker compose ps
+curl -I http://localhost:8080/guacamole/
+```
+
+
 
 
