@@ -15,14 +15,14 @@ gcloud compute ssh kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 #stop/resume
 gcloud compute instances stop kaggle-vm --zone=us-central1-a #(@Cloud Shell)
 ```
-## 2. Inside kaggle-vm SSH — start VNC if not running
+## 2. Start VNC if not running
  
 ```bash 
 vncserver #(@VM)
 ```
 *(If it's already running, this will error out safely — that's fine.)*
  
-## 3. Inside kaggle-vm SSH — start Guacamole containers
+## 3. Start Guacamole containers
  
 ```bash 
 cd ~/guacamole #(@VM)
@@ -30,7 +30,7 @@ docker compose up -d
 docker compose ps 
 ```
  
-## 4. In Cloud Shell (NOT kaggle-vm) — open firewall for your IP
+## 4. OIpen firewall for your IP
  
 ```bash 
 gcloud compute firewall-rules create allow-guacamole \ #(@Cloud Shell)
@@ -42,7 +42,7 @@ gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-v
 ```
 *Skip this step if the rule already exists — running it twice just errors "already exists", which is fine.*
  
-## 5. In Cloud Shell — get the external IP
+## 5. Get the external IP
  
 ```bash (Cloud SHell)
 gcloud compute instances describe kaggle-vm --zone=us-central1-a \ #(@Cloud Shell)
