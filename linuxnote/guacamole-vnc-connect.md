@@ -3,28 +3,28 @@
 Quick reference for reconnecting to the VNC desktop through Guacamole, assuming XFCE/VNC and the Guacamole containers are already installed on kaggle-vm.
 
 
- ## 1. SSH into kaggle-vm (TURN ON/OFF the VM) (Cloud Shell or local terminal)
-```bash
+ ## 1. SSH into kaggle-vm (TURN ON/OFF the VM) 
+```bash (Cloud Shell)
 #start/resume
 gcloud compute instances start kaggle-vm --zone=us-central1-a
 
 #to reconnect
 gcloud compute ssh kaggle-vm --zone=us-central1-a
 ```
-```bash
+```bash (Cloud Shell)
 #stop/resume
 gcloud compute instances stop kaggle-vm --zone=us-central1-a
 ```
 ## 2. Inside kaggle-vm SSH — start VNC if not running
  
-```bash
+```bash (VM)
 vncserver
 ```
 *(If it's already running, this will error out safely — that's fine.)*
  
 ## 3. Inside kaggle-vm SSH — start Guacamole containers
  
-```bash
+```bash (VM)
 cd ~/guacamole
 docker compose up -d
 docker compose ps
@@ -32,7 +32,7 @@ docker compose ps
  
 ## 4. In Cloud Shell (NOT kaggle-vm) — open firewall for your IP
  
-```bash
+```bash (Cloud Shell)
 gcloud compute firewall-rules create allow-guacamole \
   --allow=tcp:8080 \
   --source-ranges=211.223.33.71/32 \
@@ -44,7 +44,7 @@ gcloud compute instances add-tags kaggle-vm --zone=us-central1-a --tags=kaggle-v
  
 ## 5. In Cloud Shell — get the external IP
  
-```bash
+```bash (Cloud SHell)
 gcloud compute instances describe kaggle-vm --zone=us-central1-a \
   --format="value(networkInterfaces[0].accessConfigs[0].natIP)"
 ```
@@ -72,17 +72,18 @@ If it's not there yet, add it under Settings → Connections → New Connection:
 Run this on the PC bang computer's browser (not in Cloud Shell, since that shows Google's IP): search "what is my IP", or open https://ifconfig.me.
 
 2. Update the rule in Cloud Shell
-
-gcloud compute firewall-rules update allow-guacamole \
-  --source-ranges=<PC_BANG_IP>/32
-
+```bash (Cloud Shell)
+gcloud compute firewall-rules update allow-guacamole --source-ranges=<PC_BANG_IP>/32
+```
 You can confirm it took effect with:
 
+```bash (Cloud Shell)
 gcloud compute firewall-rules describe allow-guacamole --format="value(sourceRanges)"
+```
 
 3. Open it in the browser
 
-http://34.59.170.88:8080/guacamole
+http://<NewIP>:8080/guacamole
 
 
  
