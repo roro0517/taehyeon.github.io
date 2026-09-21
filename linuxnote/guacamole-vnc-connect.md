@@ -126,7 +126,6 @@ ss -ltnp | grep -E '590[0-9]'
 
 ```bash
 #to kill
-vncserver -kill :1
 vncserver -kill :2
 ```
 
