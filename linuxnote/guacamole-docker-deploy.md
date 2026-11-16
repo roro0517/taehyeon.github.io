@@ -3,7 +3,7 @@
 ## 0. SSH into kaggle-vm
  
 ```bash
-gcloud compute ssh kaggle-vm --zone=us-central1-a
+gcloud compute ssh dammit --zone=us-central1-a
 ```
  
 ## 1. Check Docker is installed (inside kaggle-vm SSH)
